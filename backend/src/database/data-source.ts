@@ -1,6 +1,7 @@
 import "dotenv/config"; //carga del .env
 import "reflect-metadata"; //decoradores
 import { DataSource } from "typeorm";
+import { User } from "../modules/user/user.entity.js";
 
 export const AppDataSource = new DataSource({
   type: "mysql",
@@ -10,5 +11,5 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   synchronize: true,
-  //entities: [User, Product],
+  entities: [User,]
 });

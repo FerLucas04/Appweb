@@ -34,6 +34,31 @@ export class AppError extends Error {
     this.isOperational = isOperational;
     Error.captureStackTrace(this, this.constructor);
   }
+
+  //Metodos estaticos de error por defecto
+  static badRequest(message: string, details?: unknown): AppError {
+    return new AppError(HTTP_STATUS.BAD_REQUEST, message, ERROR_CODES.BAD_REQUEST, details);
+  }
+
+  static validation(message: string, details?: unknown): AppError {
+    return new AppError(HTTP_STATUS.BAD_REQUEST, message, ERROR_CODES.VALIDATION_ERROR, details);
+  }
+
+  static unauthorized(message = "No autorizado", details?: unknown): AppError {
+    return new AppError(HTTP_STATUS.UNAUTHORIZED, message, ERROR_CODES.UNAUTHORIZED, details);
+  }
+
+  static forbidden(message = "Acceso denegado", details?: unknown): AppError {
+    return new AppError(HTTP_STATUS.FORBIDDEN, message, ERROR_CODES.FORBIDDEN, details);
+  }
+
+  static notFound(message = "Recurso no encontrado", details?: unknown): AppError {
+    return new AppError(HTTP_STATUS.NOT_FOUND, message, ERROR_CODES.NOT_FOUND, details);
+  }
+
+  static conflict(message: string, details?: unknown): AppError {
+    return new AppError(HTTP_STATUS.CONFLICT, message, ERROR_CODES.CONFLICT, details);
+  }
 }
 
 /** Convierte cualquier error conocido en un AppError uniforme. */

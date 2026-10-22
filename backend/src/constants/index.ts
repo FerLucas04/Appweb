@@ -19,6 +19,8 @@ export const ENV = {
   DB_NAME: required("DB_NAME"),
   JWT_SECRET: required("JWT_SECRET"),
   ADMIN_PASSWORD: required("ADMIN_PASSWORD"),
+  ADMIN_EMAIL: process.env.ADMIN_EMAIL?.trim() || "admin@biblioteca.com",
+  ADMIN_NOMBRE: process.env.ADMIN_NOMBRE?.trim() || "Administrador",
 } as const;
 
 export const IS_PRODUCTION = ENV.NODE_ENV === "production";
@@ -56,3 +58,4 @@ export const MESSAGES = {
 } as const;
 
 export const BCRYPT_SALT_ROUNDS = 10;
+export const JWT_EXPIRES_IN = "8h";

@@ -1,0 +1,25 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno (nunca se suben secretos)
+.env
+.env.*
+!.env.example
+
+# Compilados
+dist/
+build/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editores y sistema operativo
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Cobertura de tests
+coverage/

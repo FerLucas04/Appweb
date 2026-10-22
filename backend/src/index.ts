@@ -6,6 +6,8 @@ import { AppDataSource } from "./database/data-source.js";
 import { errorHandler, notFoundHandler } from "./middlewares/errors.js";
 import { requestLogger } from "./middlewares/requestLogger.js";
 import { logger } from "./utils/logger.js";
+import { seedAdminUser } from "./database/seeders/admin.seeder.js";
+import { authRouter } from "./modules/user/user.routes.js";
 
 const app = express();
 
@@ -22,7 +24,8 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
-// Las rutas de negocio se montarán acá en los próximos pasos:
+// Las rutas de negocio:
+app.use("/api/auth", authRouter);
 // app.use("/api/books", booksRouter);
 
 // El manejo de errores SIEMPRE va al final
@@ -33,6 +36,7 @@ const bootstrap = async (): Promise<void> => {
   try {
     await AppDataSource.initialize();
     logger.info(`Conexión a MySQL establecida (${ENV.DB_HOST}:${ENV.DB_PORT}/${ENV.DB_NAME})`);
+    await seedAdminUser();
 
     const server = app.listen(ENV.PORT, () => {
       logger.info(`Servidor escuchando en http://localhost:${ENV.PORT} [${ENV.NODE_ENV}]`);
