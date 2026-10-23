@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { BCRYPT_SALT_ROUNDS, ENV } from "../../constants/index.js";
-import { userRepository } from "../../modules/auth/user.repository.js";
+import { userRepository } from "../../modules/user/user.repository.js";
 import { logger } from "../../utils/logger.js";
 
 export const seedAdminUser = async (): Promise<void> => {

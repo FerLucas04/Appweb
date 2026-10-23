@@ -76,6 +76,11 @@ const normalizeError = (err: unknown): AppError => {
     if (driverCode === "ER_DUP_ENTRY") {
       return new AppError(HTTP_STATUS.CONFLICT, MESSAGES.DUPLICATE_ENTRY, ERROR_CODES.CONFLICT);
     }
+
+    // Niega los deletes para registros que están siendo referenciados (FK)
+    if (driverCode === "ER_ROW_IS_REFERENCED_2") {
+      return new AppError(HTTP_STATUS.CONFLICT, MESSAGES.RECORD_IN_USE, ERROR_CODES.CONFLICT);
+    }
   }
 
   // Error inesperado: no exponemos detalles internos al cliente

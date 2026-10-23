@@ -55,6 +55,7 @@ export const MESSAGES = {
   INVALID_JSON: "El cuerpo de la petición no es un JSON válido",
   DUPLICATE_ENTRY: "Ya existe un registro con esos datos",
   ROUTE_NOT_FOUND: (method: string, url: string) => `Ruta no encontrada: ${method} ${url}`,
+  RECORD_IN_USE: "No se puede eliminar: el registro está siendo utilizado por otros registros",
 } as const;
 
 export const BCRYPT_SALT_ROUNDS = 10;

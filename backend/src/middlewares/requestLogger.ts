@@ -2,6 +2,12 @@ import type { NextFunction, Request, Response } from "express";
 import { logger } from "../utils/logger.js";
 
 export const requestLogger = (req: Request, res: Response, next: NextFunction): void => {
+  
+  if (req.originalUrl.startsWith("/api/logs")) {
+    next();
+    return;
+  }
+  
   const start = process.hrtime.bigint();
 
   // 'finish' se emite cuando la respuesta ya se envió: ahí conocemos el status final

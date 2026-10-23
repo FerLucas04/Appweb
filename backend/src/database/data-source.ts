@@ -2,6 +2,11 @@ import "dotenv/config"; //carga del .env
 import "reflect-metadata"; //decoradores
 import { DataSource } from "typeorm";
 import { User } from "../modules/user/user.entity.js";
+import { Book } from "../modules/book/book.entity.js";
+import { Author } from "../modules/author/author.entity.js";
+import { Shelf } from "../modules/shelf/shelf.entity.js";
+import { Genre } from "../modules/genre/genre.entity.js";
+import { Saga } from "../modules/saga/saga.entity.js";
 
 export const AppDataSource = new DataSource({
   type: "mysql",
@@ -11,5 +16,5 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   synchronize: true,
-  entities: [User,]
+  entities: [User, Book, Author, Shelf, Genre, Saga],
 });

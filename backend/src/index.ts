@@ -8,6 +8,13 @@ import { requestLogger } from "./middlewares/requestLogger.js";
 import { logger } from "./utils/logger.js";
 import { seedAdminUser } from "./database/seeders/admin.seeder.js";
 import { authRouter } from "./modules/user/user.routes.js";
+import { authorRouter } from "./modules/author/author.routes.js";
+import { bookRouter } from "./modules/book/book.routes.js";
+import { genreRouter } from "./modules/genre/genre.routes.js";
+import { sagaRouter } from "./modules/saga/saga.routes.js";
+import { shelfRouter } from "./modules/shelf/shelf.routes.js";
+import { logRouter } from "./modules/log/log.routes.js";
+
 
 const app = express();
 
@@ -26,7 +33,12 @@ app.get("/api/health", (_req, res) => {
 
 // Las rutas de negocio:
 app.use("/api/auth", authRouter);
-// app.use("/api/books", booksRouter);
+app.use("/api/authors", authorRouter);
+app.use("/api/genres", genreRouter);
+app.use("/api/shelves", shelfRouter);
+app.use("/api/sagas", sagaRouter);
+app.use("/api/books", bookRouter);
+app.use("/api/logs", logRouter);
 
 // El manejo de errores SIEMPRE va al final
 app.use(notFoundHandler);
