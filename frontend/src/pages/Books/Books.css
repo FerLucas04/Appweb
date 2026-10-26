@@ -1,0 +1,20 @@
+.books-page { display: flex; flex-direction: column; gap: 1rem; }
+
+.books-subtitle { margin: 0.15rem 0 0; font-size: 0.9rem; }
+
+/* Panel de filtros (lo usa BookFilter) */
+.books-page .filter-form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.75rem; padding: 1rem; border: 1px solid var(--border); border-radius: 10px; background: #f9fafb; }
+.books-page .filter-form .field { flex: 1 1 180px; }
+
+.books-summary { margin: 0; font-size: 0.85rem; color: var(--muted); }
+
+/* Ficha de detalle (la usa BookDetailModal, que se muestra dentro de esta página) */
+.detail-list { display: grid; grid-template-columns: max-content 1fr; gap: 0.75rem 1.25rem; margin: 0; }
+.detail-list dt { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+.detail-list dd { margin: 0; }
+.detail-shelf { padding: 0.75rem 0.9rem; border-radius: 8px; background: var(--primary-soft); border: 1px solid #bfdbfe; }
+
+@media (max-width: 640px) {
+  .detail-list { grid-template-columns: 1fr; gap: 0.2rem; }
+  .detail-list dd { margin-bottom: 0.6rem; }
+}

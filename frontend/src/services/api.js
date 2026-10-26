@@ -8,6 +8,14 @@ export const api = axios.create({
 
 // Request: adjunta el JWT guardado en localStorage
 api.interceptors.request.use((config) => {
+
+  //Una URL vacía o con "undefined" significa que falta una constante
+  //o un id, se muestra una falla con un mensaje claro
+  if (!config.url || config.url.includes("undefined")) {
+    console.error("[api] Petición con URL inválida:", config.method, config.url);
+    return Promise.reject(new Error(`URL inválida en la petición: "${config.url}"`));
+  }
+
   const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;

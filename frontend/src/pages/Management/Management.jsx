@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { CatalogTab } from "../components/CatalogTab";
-import { createAuthor, deleteAuthor, getAuthors, updateAuthor } from "../services/authors.service";
-import { createGenre, deleteGenre, getGenres, updateGenre } from "../services/genres.service";
-import { createSaga, deleteSaga, getSagas, updateSaga } from "../services/sagas.service";
-import { createShelf, deleteShelf, getShelves, updateShelf } from "../services/shelves.service";
-import { authorSchema, genreSchema, sagaSchema, shelfSchema } from "../utils/validators";
+import { CatalogTab } from "../../components/CatalogTab";
+import { createAuthor, deleteAuthor, getAuthors, updateAuthor } from "../../services/authors.service";
+import { createGenre, deleteGenre, getGenres, updateGenre } from "../../services/genres.service";
+import { createSaga, deleteSaga, getSagas, updateSaga } from "../../services/sagas.service";
+import { createShelf, deleteShelf, getShelves, updateShelf } from "../../services/shelves.service";
+import { authorSchema, genreSchema, sagaSchema, shelfSchema } from "../../utils/validators";
+import "./Management.css";
 
-// Definido fuera del componente para que las referencias sean estables entre renders.
-// Cada entrada describe un catálogo completo: servicio, schema, campos del formulario y columnas de la tabla.
+// Fuera del componente para que las referencias sean estables entre renders.
+// Cada entrada describe un catálogo completo: servicio, schema, campos del formulario y columnas.
 const CATALOGS = {
   authors: {
     label: "Autores",
@@ -75,16 +76,19 @@ export const Management = () => {
   const [active, setActive] = useState("authors");
 
   return (
-    <div className="card">
-      <h1>Administración de catálogos</h1>
+    <div className="card mgmt-page">
+      <div>
+        <h1>Administración de catálogos</h1>
+        <p className="mgmt-subtitle muted">Gestioná los autores, géneros, sagas y estantes que usan los libros.</p>
+      </div>
 
-      <div className="tabs" role="tablist">
+      <div className="mgmt-tabs" role="tablist" aria-label="Catálogos">
         {Object.entries(CATALOGS).map(([key, cfg]) => (
           <button
             key={key}
             role="tab"
             aria-selected={active === key}
-            className={`tab ${active === key ? "tab-active" : ""}`}
+            className={`mgmt-tab ${active === key ? "mgmt-tab--active" : ""}`}
             onClick={() => setActive(key)}
           >
             {cfg.label}
@@ -92,8 +96,10 @@ export const Management = () => {
         ))}
       </div>
 
-      {/* key fuerza a reiniciar el estado al cambiar de pestaña */}
-      <CatalogTab key={active} config={CATALOGS[active]} />
+      {/* key reinicia el estado de la pestaña al cambiar de catálogo */}
+      <div className="mgmt-panel" role="tabpanel">
+        <CatalogTab key={active} config={CATALOGS[active]} />
+      </div>
     </div>
   );
 };

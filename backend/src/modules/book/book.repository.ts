@@ -32,4 +32,6 @@ export const bookRepository = {
   update: (id: number, data: BookData) => repo().update({ id }, data),
 
   delete: (id: number) => repo().delete({ id }),
+
+  count: () => repo().count(),
 };

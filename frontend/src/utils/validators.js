@@ -54,16 +54,16 @@ export const shelfSchema = object({
 export const bookSchema = object({
   titulo: requiredText("El título", 255),
   anioPublicacion: yearField(true),
-  autorId: requiredSelect("Seleccioná un autor"),
-  generoId: requiredSelect("Seleccioná un género"),
-  estanteId: requiredSelect("Seleccioná un estante"),
+  authorId: requiredSelect("Seleccioná un autor"),
+  genreId: requiredSelect("Seleccioná un género"),
+  shelfId: requiredSelect("Seleccioná un estante"),
   sagaId: number().nullable().transform(emptyToNull).typeError("Seleccioná una saga válida"),
 });
 
 // Filtros del listado: todos opcionales
 export const bookFilterSchema = object({
-  autorId: number().transform(emptyToUndefined).typeError("Autor inválido"),
-  generoId: number().transform(emptyToUndefined).typeError("Género inválido"),
+  authorId: number().transform(emptyToUndefined).typeError("Autor inválido"),
+  genreId: number().transform(emptyToUndefined).typeError("Género inválido"),
   anioPublicacion: yearField(false),
 });
 

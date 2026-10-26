@@ -1,26 +1,9 @@
-import { ENDPOINTS } from "../constants";
-import { api } from "./api";
+import { createCrudService } from "./crud.service";
 
-export const getSagas = async () => {
-  const { data } = await api.get(ENDPOINTS.SAGAS);
-  return data.data;
-};
+const crud = createCrudService("/sagas");
 
-export const getSagaById = async (id) => {
-  const { data } = await api.get(`${ENDPOINTS.SAGAS}/${id}`);
-  return data.data;
-};
-
-export const createSaga = async (saga) => {
-  const { data } = await api.post(ENDPOINTS.SAGAS, saga);
-  return data.data;
-};
-
-export const updateSaga = async (id, saga) => {
-  const { data } = await api.put(`${ENDPOINTS.SAGAS}/${id}`, saga);
-  return data.data;
-};
-
-export const deleteSaga = async (id) => {
-  await api.delete(`${ENDPOINTS.SAGAS}/${id}`);
-};
+export const getSagas = crud.getAll;
+export const getSagaById = crud.getById;
+export const createSaga = crud.create;
+export const updateSaga = crud.update;
+export const deleteSaga = crud.remove;

@@ -2,11 +2,11 @@ import { Navigate, Route, Routes } from "react-router";
 import { Layout } from "./components/Layout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ROUTES } from "./constants";
-import { Home } from "./pages/Home";
+import { Home } from "./pages/Home/Home.jsx";
 import { Login } from "./pages/Login";
-import { Logs } from "./pages/Logs";
-import { Books } from "./pages/Books";
-import { Management } from "./pages/Management";
+import { Logs } from "./pages/Logs/Logs.jsx";
+import { Books } from "./pages/Books/Books.jsx";
+import { Management } from "./pages/Management/Management.jsx";
 
 const App = () => (
   <Routes>

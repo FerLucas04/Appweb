@@ -1,26 +1,9 @@
-import { ENDPOINTS } from "../constants";
-import { api } from "./api";
+import { createCrudService } from "./crud.service";
 
-export const getGenres = async () => {
-  const { data } = await api.get(ENDPOINTS.GENRES);
-  return data.data;
-};
+const crud = createCrudService("/genres");
 
-export const getGenreById = async (id) => {
-  const { data } = await api.get(`${ENDPOINTS.GENRES}/${id}`);
-  return data.data;
-};
-
-export const createGenre = async (genre) => {
-  const { data } = await api.post(ENDPOINTS.GENRES, genre);
-  return data.data;
-};
-
-export const updateGenre = async (id, genre) => {
-  const { data } = await api.put(`${ENDPOINTS.GENRES}/${id}`, genre);
-  return data.data;
-};
-
-export const deleteGenre = async (id) => {
-  await api.delete(`${ENDPOINTS.GENRES}/${id}`);
-};
+export const getGenres = crud.getAll;
+export const getGenreById = crud.getById;
+export const createGenre = crud.create;
+export const updateGenre = crud.update;
+export const deleteGenre = crud.remove;

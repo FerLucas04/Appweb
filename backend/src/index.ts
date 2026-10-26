@@ -14,13 +14,17 @@ import { genreRouter } from "./modules/genre/genre.routes.js";
 import { sagaRouter } from "./modules/saga/saga.routes.js";
 import { shelfRouter } from "./modules/shelf/shelf.routes.js";
 import { logRouter } from "./modules/log/log.routes.js";
+import { seedSampleBooks } from "./database/seeders/books.seeder.js";
 
 
 const app = express();
 
 // Middlewares globales (el logger va primero para medir el ciclo completo)
 app.use(requestLogger);
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173", // o true para permitir cualquier origen en desarrollo
+  credentials: true
+}));
 app.use(express.json());
 
 // Ruta de verificación
@@ -49,6 +53,7 @@ const bootstrap = async (): Promise<void> => {
     await AppDataSource.initialize();
     logger.info(`Conexión a MySQL establecida (${ENV.DB_HOST}:${ENV.DB_PORT}/${ENV.DB_NAME})`);
     await seedAdminUser();
+    await seedSampleBooks();
 
     const server = app.listen(ENV.PORT, () => {
       logger.info(`Servidor escuchando en http://localhost:${ENV.PORT} [${ENV.NODE_ENV}]`);

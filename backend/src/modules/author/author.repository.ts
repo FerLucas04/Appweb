@@ -9,4 +9,5 @@ export const authorRepository = {
   create: (data: Pick<Author, "nombre" | "nacionalidad">) => repo().save(repo().create(data)),
   update: (id: number, data: Pick<Author, "nombre" | "nacionalidad">) => repo().update({ id }, data),
   delete: (id: number) => repo().delete({ id }),
+  count: () => repo().count(),
 };

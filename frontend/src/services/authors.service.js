@@ -1,26 +1,9 @@
-import { ENDPOINTS } from "../constants";
-import { api } from "./api";
+import { createCrudService } from "./crud.service";
 
-export const getAuthors = async () => {
-  const { data } = await api.get(ENDPOINTS.AUTHORS);
-  return data.data;
-};
+const crud = createCrudService("/authors");
 
-export const getAuthorById = async (id) => {
-  const { data } = await api.get(`${ENDPOINTS.AUTHORS}/${id}`);
-  return data.data;
-};
-
-export const createAuthor = async (author) => {
-  const { data } = await api.post(ENDPOINTS.AUTHORS, author);
-  return data.data;
-};
-
-export const updateAuthor = async (id, author) => {
-  const { data } = await api.put(`${ENDPOINTS.AUTHORS}/${id}`, author);
-  return data.data;
-};
-
-export const deleteAuthor = async (id) => {
-  await api.delete(`${ENDPOINTS.AUTHORS}/${id}`);
-};
+export const getAuthors = crud.getAll;
+export const getAuthorById = crud.getById;
+export const createAuthor = crud.create;
+export const updateAuthor = crud.update;
+export const deleteAuthor = crud.remove;

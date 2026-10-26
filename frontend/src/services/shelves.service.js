@@ -1,26 +1,9 @@
-import { ENDPOINTS } from "../constants";
-import { api } from "./api";
+import { createCrudService } from "./crud.service";
 
-export const getShelves = async () => {
-  const { data } = await api.get(ENDPOINTS.SHELVES);
-  return data.data;
-};
+const crud = createCrudService("/shelves");
 
-export const getShelfById = async (id) => {
-  const { data } = await api.get(`${ENDPOINTS.SHELVES}/${id}`);
-  return data.data;
-};
-
-export const createShelf = async (shelf) => {
-  const { data } = await api.post(ENDPOINTS.SHELVES, shelf);
-  return data.data;
-};
-
-export const updateShelf = async (id, shelf) => {
-  const { data } = await api.put(`${ENDPOINTS.SHELVES}/${id}`, shelf);
-  return data.data;
-};
-
-export const deleteShelf = async (id) => {
-  await api.delete(`${ENDPOINTS.SHELVES}/${id}`);
-};
+export const getShelves = crud.getAll;
+export const getShelfById = crud.getById;
+export const createShelf = crud.create;
+export const updateShelf = crud.update;
+export const deleteShelf = crud.remove;
