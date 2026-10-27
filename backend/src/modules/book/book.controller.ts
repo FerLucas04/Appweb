@@ -12,6 +12,7 @@ import {
 } from "../../utils/validators.js";
 import { bookService, type BookFilters, type BookInput } from "./book.service.js";
 
+//Analiza los filtros de la query y devuelve un objeto con los filtros válidos
 const parseFilters = (req: Request): BookFilters => {
   const filters: BookFilters = {};
   const autorId = optionalQueryInt(req.query.autorId, "autorId");
@@ -24,6 +25,7 @@ const parseFilters = (req: Request): BookFilters => {
   return filters;
 };
 
+//Analiza el body de la request y devuelve un objeto con los datos válidos para crear o actualizar un libro
 const parseInput = (req: Request): BookInput => {
   const body = getBody(req);
   return {

@@ -14,7 +14,7 @@ export const ROUTES = {
   LOGS: "/logs",
 };
 
-// Endpoints del backend (relativos a API_URL). Los cuatro catálogos DEBEN estar acá.
+// Endpoints del backend (relativos a API_URL).
 export const ENDPOINTS = {
   LOGIN: "/auth/login",
   ME: "/auth/me",
