@@ -5,6 +5,7 @@ import { api } from "../services/api";
 //Conexto global de autenticación. 
 //Provee el estado de sesión y funciones para loguearse y desloguearse.
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(undefined);
 
 const readStoredUser = () => {

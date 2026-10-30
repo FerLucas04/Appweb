@@ -1,0 +1,21 @@
+.logs-page { display: flex; flex-direction: column; gap: 1rem; }
+
+.logs-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; }
+.logs-toolbar h1 { margin: 0; }
+.logs-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+.logs-actions select { width: auto; }
+
+.logs-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.logs-chip { padding: 0.3rem 0.9rem; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--text); font: inherit; font-size: 0.85rem; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
+.logs-chip:hover { background: #f3f4f6; }
+.logs-chip--active, .logs-chip--active:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+.logs-level { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 6px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.03em; }
+.logs-level--info { background: #dcfce7; color: #166534; }
+.logs-level--warn { background: #fef3c7; color: #92400e; }
+.logs-level--error { background: #fee2e2; color: #991b1b; }
+
+.logs-message { word-break: break-word; }
+.logs-meta { margin-top: 0.35rem; }
+.logs-meta summary { cursor: pointer; font-size: 0.8rem; color: var(--primary); }
+.logs-meta pre { margin: 0.4rem 0 0; padding: 0.75rem; max-height: 260px; overflow: auto; border-radius: 8px; background: #111827; color: #e5e7eb; font-size: 0.75rem; white-space: pre-wrap; }

@@ -77,7 +77,7 @@ Esto evita que controllers o services dependan de detalles de consultas SQL. Las
 ## 2. Middlewares y validación
 
 En Express, un middleware puede inspeccionar o modificar la petición, finalizar la respuesta o pasar el control al siguiente middleware con `next()`. El orden de registro importa: la petición atraviesa los middlewares globales y luego la ruta correspondiente; los manejadores de error se colocan al final.
-
+  
 ### Autenticación JWT: `authMiddleware.ts`
 
 El middleware exporta `authenticateToken`. Busca `Authorization`, separa el esquema del token y exige que el esquema sea `Bearer`. Luego delega la verificación criptográfica y de expiración en `authService.verifyToken`; si el token es válido, agrega el usuario público a `req.user` y llama a `next()`. Si falta o no es válido, lanza un error `401` y la ruta protegida no llega al controller.
